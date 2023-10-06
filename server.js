@@ -23,8 +23,9 @@ app.use("/login", loginRoute);
 app.use("/about", aboutRoute);
 
 app.use("/profile", profileRoute);
-app.use("/payment", paymentRoute);
 app.use("/contact", contactRoute);
+app.use("/payment", paymentRoute);
+
 app.use("/course", courseRoute); // Regist courses
 app.use("/schedule", scheduleRoute); // Show schedule
 app.use("/portal", portalRoute); // My progress
