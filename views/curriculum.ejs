@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<body>
+    <h1>curriculum</h1>
+
+    <table style="width: 100%">
+        <tr>
+            <th>courseID</th>
+            <th>status</th>
+            <th>content</th>
+            <th>textDescription</th>
+            <th>orderDate</th>
+            <th>priceEach</th>
+        </tr>
+        <% for(let i = 0; i < data.length; i++) {%>
+            <tr>
+                <td> <%= data[i].courseID %> </td>
+                <td> <%= data[i].status %> </td>
+                <td> <%= data[i].content %> </td>
+                <td> <%= data[i].textDescription %> </td>
+                <td> <%= data[i].orderDate %> </td>
+                <td> <%= data[i].priceEach %> </td>
+            </tr>
+        <% } %>
+    </table>
+</body>
+</html>
