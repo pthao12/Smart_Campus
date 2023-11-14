@@ -1,12 +1,17 @@
-import { Router } from "express";
-import {About} from "../controllers/aboutController.js";
-import{Dashboard} from "../controllers/dashboardController.js"
-import{Profile} from "../controllers/profileController.js"
-import { Contact } from "../controllers/contactController.js";
-const contactRoute = Router();
-contactRoute.get("/about", About);
-contactRoute.get("/dashboard", Dashboard);
-contactRoute.get("/profile", Profile);
-contactRoute.get("/contact",Contact);
+import express from 'express';
+import { getInstructorContactInfo } from '../controllers/contactController';
 
-export default contactRoute;
+const router = express.Router();
+
+router.get('/contact', async (req, res) => {
+  try {
+    const loggedInUsername = req.session.userName;
+    const instructorContactInfo = await getInstructorContactInfo(loggedInUsername);
+    res.render('contact', { instructorContactInfo });
+  } catch (error) {
+    console.error('Error in contact route:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+export default router;

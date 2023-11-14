@@ -11,6 +11,7 @@ import aboutRoute from "./api/routes/aboutRoute.js";
 import profileRoute from "./api/routes/profileRoute.js";
 import paymentRoute from "./api/routes/paymentRoute.js";
 import contactRoute from "./api/routes/contactRoute.js";
+import loginRoute from "./api/routes/loginRoute.js";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -29,12 +30,14 @@ app.use(methodOverride('_method'));
 
 // app.set('view engine', 'ejs');
 // app.use(express.static('public'));
+
 // Connect DB
 
 // Routes
 app.use("/", dashboardRoute);
-//app.use("/login", loginRoute);
-app.use("/about", aboutRoute);
+app.use("/", loginRoute);
+app.use("/", contactRoute);
+app.use("/about", dashboardRoute);
 
 app.use("/profile", profileRoute);
 app.use("/contact", contactRoute);

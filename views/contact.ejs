@@ -2,7 +2,17 @@
 <html>
 
 <body>
-    <h1>dashboard</h1>
-    <h2 href ='/contact' class ="">Contact</h2>
+    <h1>Dashboard</h1>
+    <h2><a href="/contact" class="">Contact</a></h2>
+
+    <% if (instructorContactInfo) { %>
+        <h3>Instructor Contact Information:</h3>
+        <p>Email: <%= instructorContactInfo.instructorEmail %></p>
+        <p>Title: <%= instructorContactInfo.title %></p>
+        <p>Content: <%= instructorContactInfo.content %></p>
+    <% } else { %>
+        <p>No instructor contact information available.</p>
+    <% } %>
 </body>
+
 </html>
