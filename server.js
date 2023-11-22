@@ -12,6 +12,9 @@ import profileRoute from "./api/routes/profileRoute.js";
 import paymentRoute from "./api/routes/paymentRoute.js";
 import contactRoute from "./api/routes/contactRoute.js";
 import loginRoute from "./api/routes/loginRoute.js";
+import statisticRoute from "./api/routes/statisticRoute.js";
+import courseRoute from "./api/routes/courseRoute.js";
+
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -43,11 +46,11 @@ app.use("/profile", profileRoute);
 app.use("/contact", contactRoute);
 app.use("/payment", paymentRoute);
 
-// app.use("/course", courseRoute); // Regist courses
+app.use("/course", courseRoute); // Regist courses
 // app.use("/schedule", scheduleRoute); // Show schedule
 // app.use("/portal", portalRoute); // My progress
 // app.use("/curriculum", curriculumRoute);
-// app.use("/statistic", statisticRoute); // Show most registed class, most registed course, most registed teacher, students with most credits
+app.use("/statistic", statisticRoute); // Show most registed class, most registed course, most registed teacher, students with most credits
 
 app.use(express.static('public'));
 
