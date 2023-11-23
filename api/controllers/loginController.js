@@ -9,7 +9,7 @@ export const loginController = async (req, res) => {
             if (error) throw error;
 
             if (results.length > 0) {
-                res.redirect('/about');
+                res.redirect('/contact');
             } else {
                 res.redirect('/login?error=1');
             }
