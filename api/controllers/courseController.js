@@ -14,11 +14,7 @@ export const getAllCourse = async (req, res) => {
 
 }
 
-// `courseID` VARCHAR(12) NOT NULL,
-// `courseName` VARCHAR(45) NULL,
-// `credits` VARCHAR(45) NULL,
-// `practice` INT NULL,
-// `theory` INT NULL,
+
 export const addNewCourse = async (req, res) => {
     try {
         const { courseID, courseName, credits, practice, theory } = req.body;

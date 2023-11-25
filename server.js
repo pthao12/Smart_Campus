@@ -53,13 +53,12 @@ app.use("/about", dashboardRoute);
 
 app.use("/profile", profileRoute);
 app.use("/contact", contactRoute);
+//trang
 app.use("/payment", paymentRoute);
 
-app.use("/course", courseRoute); // Regist courses
-// app.use("/schedule", scheduleRoute); // Show schedule
-// app.use("/portal", portalRoute); // My progress
+app.use("/course", courseRoute);
 app.use("/curriculum", curriculumRoute);
- app.use("/statistic", statisticRoute); // Show most registed class, most registed course, most registed teacher, students with most credits
+ app.use("/statistic", statisticRoute); 
 
 app.use(express.static('public'));
 

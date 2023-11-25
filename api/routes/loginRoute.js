@@ -1,30 +1,4 @@
-// import { Router } from "express";
-// import {About} from "../controllers/aboutController.js";
-// import{Dashboard} from "../controllers/dashboardController.js"
-// import{Profile} from "../controllers/profileController.js"
-// import { Payment } from "../controllers/paymentController.js";
-// import { Login } from "../controllers/loginController.js";
 
-// const loginRoute = Router();
-// loginRoute.get("/about", About);
-// loginRoute.get("/dashboard", Dashboard);
-// loginRoute.get("/profile", Profile);
-// loginRoute.get("/payment",Payment);
-// loginRoute.get("/login",Login);
-// export default loginRoute;
-
-
-// import { Router } from "express";
-// import { getAllDocuments, getDocumentById} from "../controllers/loginController.js";
-
-// const loginRoute = Router();
-
-// // GET
-// loginRoute.get("/", getAllDocuments);
-// //loginRoute.get("/search", searchDocument);
-// loginRoute.get("/:id", getDocumentById);
-
-// export default loginRoute;
 
 import { Router } from 'express';
 import { loginController } from '../controllers/loginController.js';

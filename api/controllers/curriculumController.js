@@ -1,8 +1,6 @@
-import Documents from '../modules/documentModule.js';
+import Documents from '../modules/CurriculumModule.js';
 import db from '../connect/connect.js';
 
-
-// GET method
 export const getAllDocuments = (req, res) => {
 
     let sql = "select * from mydb.curriculum";

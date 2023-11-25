@@ -1,12 +1,19 @@
+// paymentRoute.js
 import { Router } from "express";
-import {About} from "../controllers/aboutController.js";
-import{Dashboard} from "../controllers/dashboardController.js"
-import{Profile} from "../controllers/profileController.js"
-import { Payment } from "../controllers/paymentController.js";
+import {
+  getAllPayments,
+  getPaymentByStudentID,
+  addPayment,
+  updatePayment,
+  deletePayment,
+} from "../controllers/paymentController.js";
+
 const paymentRoute = Router();
-paymentRoute.get("/about", About);
-paymentRoute.get("/dashboard", Dashboard);
-paymentRoute.get("/profile", Profile);
-paymentRoute.get("/payment",Payment);
+
+paymentRoute.get("/", getAllPayments);
+paymentRoute.get("/:studentID", getPaymentByStudentID);
+paymentRoute.post("/", addPayment);
+paymentRoute.put("/:studentID", updatePayment);
+paymentRoute.delete("/:studentID", deletePayment);
 
 export default paymentRoute;

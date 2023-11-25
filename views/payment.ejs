@@ -1,0 +1,28 @@
+<!-- payments.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payments</title>
+</head>
+<body>
+
+<h1>All Payments</h1>
+
+<ul>
+    <% payments.forEach(payment => { %>
+        <li>
+            Student ID: <%= payment.studentID %><br>
+            Balance: <%= payment.balance %><br>
+            Debt: <%= payment.debt %><br>
+            Amount: <%= payment.amount %><br>
+            Payment Date: <%= payment.paymentDate %><br>
+        </li>
+    <% }); %>
+</ul>
+
+<a href="/addPayment">Add New Payment</a>
+
+</body>
+</html>
