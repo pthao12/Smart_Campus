@@ -3,9 +3,7 @@ import { getAllDocuments, getDocumentById} from "../controllers/curriculumContro
 
 const curriculumRoute = Router();
 
-// GET
 curriculumRoute.get("/", getAllDocuments);
-//curriculumRoute.get("/search", searchDocument);
 curriculumRoute.get("/:id", getDocumentById);
 
 export default curriculumRoute;
