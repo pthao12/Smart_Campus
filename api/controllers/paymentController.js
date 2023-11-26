@@ -28,16 +28,47 @@ export const getPaymentById = (req, res) => {
     });
 };
 
-export const addPayment = (req, res) => {
-    const { studentID, balance, debt, amount, paymentDate } = req.body;
-    let sql = "INSERT INTO mydb.payments (studentID, balance, debt, amount, paymentDate) VALUES (?, ?, ?, ?, ?)";
+export const showAddPaymentForm = (req, res) => {
+    res.render('addPaymentForm');
+};
 
-    db.query(sql, [studentID, balance, debt, amount, paymentDate], (err, result) => {
-        if (err) {
-            console.error(err);
+
+
+export const addPayment = (req, res) => {
+    const { studentID, amount } = req.body;
+    const defaultBalance = 0;
+    const defaultDebt = 0;
+
+    // Check if the studentID already exists
+    let checkSql = "SELECT * FROM mydb.payments WHERE studentID = ?";
+    db.query(checkSql, [studentID], (checkErr, checkResult) => {
+        if (checkErr) {
+            console.error(checkErr);
             res.status(500).send('Internal Server Error');
         } else {
-            res.json(result);
+            if (checkResult.length > 0) {
+                // If studentID exists, update the existing record
+                let updateSql = "UPDATE mydb.payments SET balance = balance + ?, debt = debt + ?, amount = amount + ?, paymentDate = NOW() WHERE studentID = ?";
+                db.query(updateSql, [defaultBalance, defaultDebt, amount, studentID], (updateErr, updateResult) => {
+                    if (updateErr) {
+                        console.error(updateErr);
+                        res.status(500).send('Internal Server Error');
+                    } else {
+                        res.redirect('/payment');
+                    }
+                });
+            } else {
+                // If studentID doesn't exist, insert a new record
+                let insertSql = "INSERT INTO mydb.payments (studentID, balance, debt, amount, paymentDate) VALUES (?, ?, ?, ?, NOW())";
+                db.query(insertSql, [studentID, defaultBalance, defaultDebt, amount], (insertErr, insertResult) => {
+                    if (insertErr) {
+                        console.error(insertErr);
+                        res.status(500).send('Internal Server Error');
+                    } else {
+                        res.redirect('/payment');
+                    }
+                });
+            }
         }
     });
 };

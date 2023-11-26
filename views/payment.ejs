@@ -1,10 +1,23 @@
-<!-- payments.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Payments</title>
+    <style>
+        /* Style for the modal (initially hidden) */
+        #addPaymentModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f4f4f4;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,7 +35,48 @@
     <% }); %>
 </ul>
 
-<a href="/addPayment">Add New Payment</a>
+<!-- Link to open the Add New Payment modal -->
+<a href="#" onclick="openAddPaymentModal()">Add New Payment</a>
+
+<!-- Add New Payment Modal -->
+<div id="addPaymentModal">
+    <h2>Add New Payment</h2>
+
+    <!-- Form for adding a new payment -->
+    <form action="/payment/addPayment" method="POST">
+        <label for="studentID">Student ID:</label>
+        <input type="text" id="studentID" name="studentID" required>
+
+        <!-- <label for="balance">Balance:</label>
+        <input type="number" id="balance" name="balance" required>
+
+        <label for="debt">Debt:</label>
+        <input type="number" id="debt" name="debt" required> -->
+
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required>
+
+        <label for="paymentDate">Payment Date:</label>
+        <input type="date" id="paymentDate" name="paymentDate" required>
+
+        <button type="submit">Add Payment</button>
+    </form>
+
+    <!-- Close button for the modal -->
+    <button onclick="closeAddPaymentModal()">Close</button>
+</div>
+
+<script>
+    // Function to open the Add New Payment modal
+    function openAddPaymentModal() {
+        document.getElementById('addPaymentModal').style.display = 'block';
+    }
+
+    // Function to close the Add New Payment modal
+    function closeAddPaymentModal() {
+        document.getElementById('addPaymentModal').style.display = 'none';
+    }
+</script>
 
 </body>
 </html>

@@ -1,31 +1,13 @@
-// // paymentRoute.js
-// import { Router } from "express";
-// import {
-//   getAllPayments,
-//   getPaymentByStudentID,
-//   addPayment,
-//   updatePayment,
-//   deletePayment,
-// } from "../controllers/paymentController.js";
-
-// const paymentRoute = Router();
-
-// paymentRoute.get("/", getAllPayments);
-// paymentRoute.get("/:studentID", getPaymentByStudentID);
-// paymentRoute.post("/", addPayment);
-// paymentRoute.put("/:studentID", updatePayment);
-// paymentRoute.delete("/:studentID", deletePayment);
-
-// export default paymentRoute;
 // paymentRoute.js
+
 import { Router } from "express";
-import { getAllPayments, getPaymentById, addPayment, updatePayment, deletePayment } from "../controllers/paymentController.js";
+import { getAllPayments, showAddPaymentForm, addPayment, updatePayment, deletePayment } from "../controllers/paymentController.js";
 
 const paymentRoute = Router();
 
 paymentRoute.get("/", getAllPayments);
-paymentRoute.get("/:id", getPaymentById);
-paymentRoute.post("/", addPayment);
+paymentRoute.get("/add", showAddPaymentForm); // Display the form
+paymentRoute.post("/addPayment", addPayment); // Handle the form submission
 paymentRoute.put("/:id", updatePayment);
 paymentRoute.delete("/:id", deletePayment);
 
