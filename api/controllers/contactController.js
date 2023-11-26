@@ -8,13 +8,22 @@ export const getInstructorContactInfo = async (userName) => {
       'JOIN user u ON c.studentID = u.studentID ' +
       'WHERE u.userName = ?';
 
-    const result = await connection.query(query, [userName]);
+    const result = await new Promise((resolve, reject) => {
+      connection.query(query, [userName], (error, results) => {
+        if (error) {
+          console.error('Error in query:', error);
+          reject(error);
+        } else {
+          resolve(results);
+        }
+      });
+    });
 
-    // Log the query result for debugging
     console.log('Query Result:', result);
 
-    // Return the first result if available, otherwise return null
-    return result.length > 0 ? result[0] : null;
+    //trang
+    return result;
+    //return result.length > 0 ? result[0] : null;
   } catch (error) {
     console.error('Error in getInstructorContactInfo:', error);
     throw error;

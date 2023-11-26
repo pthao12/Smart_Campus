@@ -4,15 +4,16 @@
 <body>
     <h1>Dashboard</h1>
     <h2><a href="/contact" class="">Contact</a></h2>
-
-    <% if (instructorContactInfo) { %>
-        <h3>Instructor Contact Information:</h3>
-        <p>Email: <%= instructorContactInfo.instructorEmail %></p>
-        <p>Title: <%= instructorContactInfo.title %></p>
-        <p>Content: <%= instructorContactInfo.content %></p>
-    <% } else { %>
-        <p>No instructor contact information available.</p>
-    <% } %>
+<% if (instructorContactInfo && instructorContactInfo.length > 0) { %>
+    <h3>Instructor Contact Information:</h3>
+    <% instructorContactInfo.forEach(contact => { %>
+        <p>Email: <%= contact.instructorEmail %></p>
+        <p>Title: <%= contact.title %></p>
+        <p>Content: <%= contact.content %></p>
+    <% }); %>
+<% } else { %>
+    <p>No instructor contact information available.</p>
+<% } %>
 </body>
 
 </html>
