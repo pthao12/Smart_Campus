@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+         h2, h3 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Dashboard</h1>
+    <h2><a href="/contact" class="">Contact</a></h2>
+
+    <% if (instructorContactInfo && instructorContactInfo.length > 0) { %>
+        <h3>Instructor Contact Information:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Email</th>
+                    <th>Title</th>
+                    <th>Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% instructorContactInfo.forEach((contact, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= contact.instructorEmail %></td>
+                        <td><%= contact.title %></td>
+                        <td><%= contact.content %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p>No instructor contact information available.</p>
+    <% } %>
+</body>
+
+</html>

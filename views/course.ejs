@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+</head>
+<body>
+
+<h1>Course Management</h1>
+
+<!-- Display all courses -->
+<h2>All Courses</h2>
+<ul>
+    <% for (const course of courses) { %>
+        <li><%= course.courseName %></li>
+    <% } %>
+</ul>
+
+<!-- Add new course form -->
+<h2>Add New Course</h2>
+<form action="/addCourse" method="post">
+    <label for="courseID">Course ID:</label>
+    <input type="text" id="courseID" name="courseID" required>
+
+    <label for="courseName">Course Name:</label>
+    <input type="text" id="courseName" name="courseName" required>
+
+    <label for="credits">Credits:</label>
+    <input type="number" id="credits" name="credits" required>
+
+    <label for="practice">Practice:</label>
+    <input type="number" id="practice" name="practice" required>
+
+    <label for="theory">Theory:</label>
+    <input type="number" id="theory" name="theory" required>
+
+    <button type="submit">Add Course</button>
+</form>
+
+<!-- Delete course form -->
+<h2>Delete Course</h2>
+<form action="/deleteCourse" method="post">
+    <label for="courseIDToDelete">Course ID to Delete:</label>
+    <input type="text" id="courseIDToDelete" name="courseIDToDelete" required>
+
+    <button type="submit">Delete Course</button>
+</form>
+
+<!-- Update course form -->
+<h2>Update Course</h2>
+<form action="/updateCourse" method="post">
+    <label for="courseIDToUpdate">Course ID to Update:</label>
+    <input type="text" id="courseIDToUpdate" name="courseIDToUpdate" required>
+
+    <!-- Other fields for update -->
+
+    <button type="submit">Update Course</button>
+</form>
+
+</body>
+</html>
