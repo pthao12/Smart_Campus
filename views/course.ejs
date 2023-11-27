@@ -1,63 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses</title>
+    <title>data</title>
 </head>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+         h2, h3 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+
 <body>
 
-<h1>Course Management</h1>
+    <h1>Course Management</h1>
 
-<!-- Display all courses -->
-<h2>All Courses</h2>
-<ul>
-    <% for (const course of courses) { %>
-        <li><%= course.courseName %></li>
-    <% } %>
-</ul>
+    <!-- Display all data -->
+    <h2>All data</h2>
+    <table>
+        <tr>
+            <th>Course ID</th>
+            <th>Course Name</th>
+            <th>Credits</th>
+            <th>Practice</th>
+            <th>Theory</th>
+        </tr>
+        <% for (let i = 0; i < data.length; i++) { %>
+        <tr>
+            <td><%= data[i].courseID %></td>
+            <td><%= data[i].courseName %></td>
+            <td><%= data[i].credits %></td>
+            <td><%= data[i].practice %></td>
+            <td><%= data[i].theory %></td>
+        </tr>
+        <% } %>
+    </table>
 
-<!-- Add new course form -->
-<h2>Add New Course</h2>
-<form action="/addCourse" method="post">
-    <label for="courseID">Course ID:</label>
-    <input type="text" id="courseID" name="courseID" required>
+    <!-- Add new course form -->
+    <h2>Add New Course</h2>
+    <form action="addCourse" method="post">
+        <label for="courseID">Course ID:</label>
+        <input type="text" id="courseID" name="courseID" required>
 
-    <label for="courseName">Course Name:</label>
-    <input type="text" id="courseName" name="courseName" required>
+        <label for="courseName">Course Name:</label>
+        <input type="text" id="courseName" name="courseName" required>
 
-    <label for="credits">Credits:</label>
-    <input type="number" id="credits" name="credits" required>
+        <label for="credits">Credits:</label>
+        <input type="number" id="credits" name="credits" required>
 
-    <label for="practice">Practice:</label>
-    <input type="number" id="practice" name="practice" required>
+        <label for="practice">Practice:</label>
+        <input type="number" id="practice" name="practice" required>
 
-    <label for="theory">Theory:</label>
-    <input type="number" id="theory" name="theory" required>
+        <label for="theory">Theory:</label>
+        <input type="number" id="theory" name="theory" required>
 
-    <button type="submit">Add Course</button>
-</form>
+        <button type="submit">Add Course</button>
+    </form>
 
-<!-- Delete course form -->
-<h2>Delete Course</h2>
-<form action="/deleteCourse" method="post">
-    <label for="courseIDToDelete">Course ID to Delete:</label>
-    <input type="text" id="courseIDToDelete" name="courseIDToDelete" required>
+    <!-- Delete course form -->
+    <h2>Delete Course</h2>
+    <form action="/deleteCourse" method="post">
+        <label for="courseIDToDelete">Course ID to Delete:</label>
+        <input type="text" id="courseIDToDelete" name="courseIDToDelete" required>
 
-    <button type="submit">Delete Course</button>
-</form>
+        <button type="submit">Delete Course</button>
+    </form>
 
-<!-- Update course form -->
-<h2>Update Course</h2>
-<form action="/updateCourse" method="post">
-    <label for="courseIDToUpdate">Course ID to Update:</label>
-    <input type="text" id="courseIDToUpdate" name="courseIDToUpdate" required>
+    <!-- Update course form -->
+    <h2>Update Course</h2>
+    <form action="/updateCourse" method="post">
+        <label for="courseIDToUpdate">Course ID to Update:</label>
+        <input type="text" id="courseIDToUpdate" name="courseIDToUpdate" required>
 
-    <!-- Other fields for update -->
+        <!-- Other fields for update -->
 
-    <button type="submit">Update Course</button>
-</form>
+        <button type="submit">Update Course</button>
+    </form>
 
 </body>
+
 </html>
