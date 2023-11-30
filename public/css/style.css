@@ -345,3 +345,40 @@ body.dark .home .text {
     font-size: 20px;
     line-height: 2.5;
 }
+
+.searchBar{
+  display: flex;
+  box-sizing: border-box;
+  justify-content: right;
+  align-items: center;
+  padding: 20px;
+}
+
+#searchBox{
+  background-color: lightblue;
+  border-radius: 30px;
+}
+
+#searchBox #searchText{
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 18px;
+  width: 0;
+  padding: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+#searchBox:hover #searchText, #searchBox #searchText:valid{
+  width: 300px;
+  padding: 10px 0px 10px 15px;
+}
+
+#searchBox #searchBtn{
+  background-color: lightblue;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  padding: 15px 15px;
+  font-size: 18px;
+}
