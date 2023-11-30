@@ -11,33 +11,16 @@
     <!-- Stylesheet and JavaScript files -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="/css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
-<body class="w3-montserrat">
-    <!-- Top Header -->
-    <div class="top-header">
-        <h1>Smart Campus</h1>
-        <!-- My Account Section -->
-        <div class="user-account" id="userAccount">
-            <div class="options">
-                <a href="/profile">Edit</a>
-                <a href="/login">Logout</a>
-                <span><%= locals.userName %></span>
-            </div>
-            <span>My Account</span>
-            <img src="/image/editIcon.png" alt="User Image">
-        </div>
-    </div>
-    
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Include header and main content -->
         <%- include('../partials/header.ejs')%>
-        <main class="main">
+        <section class="home">
+            <div class="text">
             <%- body %>
-        </main>
         <%- include('../partials/footer.ejs')%>
     </div>
-</body>
+    </section>
+
 
 </html>
