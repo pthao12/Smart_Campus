@@ -355,7 +355,7 @@ body.dark .home .text {
 }
 
 #searchBox{
-  background-color: lightblue;
+  background-color: #fff;
   border-radius: 30px;
 }
 
@@ -375,7 +375,7 @@ body.dark .home .text {
 }
 
 #searchBox #searchBtn{
-  background-color: lightblue;
+  background-color: blue;
   cursor: pointer;
   border: none;
   border-radius: 50%;

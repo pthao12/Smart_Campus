@@ -43,6 +43,7 @@
             <th>textDescription</th>
             <th>orderDate</th>
             <th>priceEach</th>
+            <th>Download</th>
         </tr>
         <% for(let i = 0; i < data.length; i++) {%>
             <tr>
@@ -52,6 +53,7 @@
                 <td> <%= data[i].textDescription %> </td>
                 <td> <%= data[i].orderDate.toLocaleDateString('el-GR') %> </td>
                 <td> <%= data[i].priceEach %> </td>
+                <td> <i class="fa-solid fa-file-arrow-down"></i> </td>
             </tr>
         <% } %>
     </table>
