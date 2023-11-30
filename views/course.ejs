@@ -65,22 +65,36 @@
     </table>
 
     <!-- Add new course form -->
-    <h2>Add New Course</h2>
-    <form action="addCourse" method="post">
-        <label for="courseID">Course ID:</label>
-        <input type="text" id="courseID" name="courseID" required>
+    <!-- export const addNewCourse = async (req, res) => {
+        try {
+            const { courseID, courseName, credits, practice, theory } = req.body;
+            connection.query('INSERT INTO courses SET ?', { courseID, courseName, credits, practice, theory }, (error, results) => {
+                if (error) throw error;
+                res.render('course', { data: results });
+            }
+            );
+        } catch (error) {
+            console.error('Error in addNewCourse:', error);
+            res.status(500).send('Internal Server Error');
+        }
+    
+    } -->
+    <h2>Add course</h2>
+    <form action="/addCourse" method="post">
+        <label for="courseIDToAdd">Course ID:</label>
+        <input type="text" id="courseIDToAdd" name="courseIDToAdd" required>
 
-        <label for="courseName">Course Name:</label>
-        <input type="text" id="courseName" name="courseName" required>
+        <label for="courseNameToAdd">Course Name:</label>
+        <input type="text" id="courseNameToAdd" name="courseNameToAdd" required>
 
-        <label for="credits">Credits:</label>
-        <input type="number" id="credits" name="credits" required>
+        <label for="creditsToAdd">Credits:</label>
+        <input type="text" id="creditsToAdd" name="creditsToAdd" required>
 
-        <label for="practice">Practice:</label>
-        <input type="number" id="practice" name="practice" required>
+        <label for="practiceToAdd">Practice:</label>
+        <input type="text" id="practiceToAdd" name="practiceToAdd" required>
 
-        <label for="theory">Theory:</label>
-        <input type="number" id="theory" name="theory" required>
+        <label for="theoryToAdd">Theory:</label>
+        <input type="text" id="theoryToAdd" name="theoryToAdd" required>
 
         <button type="submit">Add Course</button>
     </form>

@@ -34,7 +34,7 @@ export const addNewCourse = async (req, res) => {
 export const deleteCourse = async (req, res) => {
     try {
         const { id } = req.params;
-        connection.query('DELETE FROM courses WHERE id = ?', [id], (error, results) => {
+        connection.query('DELETE FROM courses WHERE courseId = ?', [id], (error, results) => {
             if (error) throw error;
             res.render('course', { data: results });
         }

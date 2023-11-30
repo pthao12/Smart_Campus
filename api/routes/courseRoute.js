@@ -3,8 +3,8 @@ import { getAllCourse, addNewCourse, deleteCourse, updateCourse } from "../contr
 
 const courseRoute = Router();
 courseRoute.get("/", getAllCourse);
-courseRoute.get("/addCourse", addNewCourse);
-courseRoute.get("/deleteCourse/:id", deleteCourse);
-courseRoute.get("/updateCourse/:id", updateCourse);
+courseRoute.post("/addCourse", addNewCourse);
+courseRoute.delete("/deleteCourse/:id", deleteCourse);
+courseRoute.put("/updateCourse/:id", updateCourse);
 
 export default courseRoute;
