@@ -48,8 +48,8 @@ export const deleteCourse = async (req, res) => {
 export const updateCourse = async (req, res) => {
     try {
         const { id } = req.params;
-        const { courseID, courseName, credits, practice, theory } = req.body;
-        connection.query('UPDATE courses SET courseID = ?, courseName = ?, credits = ?, practice = ?, theory = ? WHERE id = ?', [courseID, courseName, credits, practice, theory, id], (error, results) => {
+        const { courseName, credits, practice, theory } = req.body;
+        connection.query('UPDATE courses SET courseName = ?, credits = ?, practice = ?, theory = ? WHERE courseId = ?', [courseName, credits, practice, theory, id], (error, results) => {
             if (error) throw error;
             res.render('course', { data: results });
         }
