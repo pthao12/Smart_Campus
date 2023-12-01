@@ -2,7 +2,7 @@
 import db from '../connect/connect.js';
 
 export const getAllPayments = (req, res) => {
-    let sql = "SELECT * FROM mydb.payments";
+    let sql = "SELECT * FROM payments p JOIN user u ON p.studentID = u.studentID";
 
     db.query(sql, (err, payments) => {
         if (err) {
@@ -16,7 +16,7 @@ export const getAllPayments = (req, res) => {
 
 export const getPaymentById = (req, res) => {
     const { id } = req.params;
-    let sql = "SELECT * FROM mydb.payments WHERE studentID = ?";
+    let sql = "SELECT * FROM payments p JOIN user u ON p.studentID = u.studentID WHERE studentID = ?";
 
     db.query(sql, [id], (err, payment) => {
         if (err) {
@@ -40,7 +40,7 @@ export const addPayment = (req, res) => {
     const defaultDebt = 0;
 
     // Check if the studentID already exists
-    let checkSql = "SELECT * FROM mydb.payments WHERE studentID = ?";
+    let checkSql = "SELECT * FROM payments p JOIN user u ON p.studentID = u.studentID WHERE studentID = ?";
     db.query(checkSql, [studentID], (checkErr, checkResult) => {
         if (checkErr) {
             console.error(checkErr);
@@ -48,7 +48,7 @@ export const addPayment = (req, res) => {
         } else {
             if (checkResult.length > 0) {
                 // If studentID exists, update the existing record
-                let updateSql = "UPDATE mydb.payments SET balance = balance + ?, debt = debt + ?, amount = amount + ?, paymentDate = NOW() WHERE studentID = ?";
+                let updateSql = "UPDATE payments SET balance = balance + ?, debt = debt + ?, amount = amount + ?, paymentDate = NOW() WHERE studentID = ?";
                 db.query(updateSql, [defaultBalance, defaultDebt, amount, studentID], (updateErr, updateResult) => {
                     if (updateErr) {
                         console.error(updateErr);
@@ -59,7 +59,7 @@ export const addPayment = (req, res) => {
                 });
             } else {
                 // If studentID doesn't exist, insert a new record
-                let insertSql = "INSERT INTO mydb.payments (studentID, balance, debt, amount, paymentDate) VALUES (?, ?, ?, ?, NOW())";
+                let insertSql = "INSERT INTO payments (studentID, balance, debt, amount, paymentDate) VALUES (?, ?, ?, ?, NOW())";
                 db.query(insertSql, [studentID, defaultBalance, defaultDebt, amount], (insertErr, insertResult) => {
                     if (insertErr) {
                         console.error(insertErr);
@@ -76,7 +76,7 @@ export const addPayment = (req, res) => {
 export const updatePayment = (req, res) => {
     const { id } = req.params;
     const { balance, debt, amount, paymentDate } = req.body;
-    let sql = "UPDATE mydb.payments SET balance = ?, debt = ?, amount = ?, paymentDate = ? WHERE studentID = ?";
+    let sql = "UPDATE payments SET balance = ?, debt = ?, amount = ?, paymentDate = ? WHERE studentID = ?";
 
     db.query(sql, [balance, debt, amount, paymentDate, id], (err, result) => {
         if (err) {
@@ -90,7 +90,7 @@ export const updatePayment = (req, res) => {
 
 export const deletePayment = (req, res) => {
     const { id } = req.params;
-    let sql = "DELETE FROM mydb.payments WHERE studentID = ?";
+    let sql = "DELETE FROM payments WHERE studentID = ?";
 
     db.query(sql, [id], (err, result) => {
         if (err) {
