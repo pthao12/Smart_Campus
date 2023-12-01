@@ -1,24 +1,92 @@
 <!-- profile.ejs -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <title>User Profile</title>
+    <style>
+        .profile-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            padding: 60px;
+            transform: translate(-50%, -50%);
+            
+        }
+
+        .profile-box form {
+            width: 500px;
+            /* background-color: #fff; */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        .profile-box label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .profile-box input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        .profile-box button {
+            width: 150px;
+            background-color: #1F4172;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .profile-box button:hover{
+            background-color:#132043 ;
+        }
+    </style>
 </head>
-<body>
-    <h1>User Profile</h1>
+
+<div class = 'profile-box'>
+    <a>Profile</a>
     <% if (userProfileInfo && userProfileInfo.length > 0) { %>
-        <p>Full Name: <%= userProfileInfo[0].fullName %></p>
-        <p>Date of Birth: <%= userProfileInfo[0].dateOfBirth %></p>
-        <p>Class: <%= userProfileInfo[0].class %></p>
-        <p>Gender: <%= userProfileInfo[0].gender %></p>
-        <p>Address: <%= userProfileInfo[0].address %></p>
-        <p>Email: <%= userProfileInfo[0].email %></p>
-        <p>Image: <%= userProfileInfo[0].image %></p>
-      <% } else { %>
-        <p>No profile information available.</p>
-      <% } %>
-</body>
+    <form action="/profile/update" method="post">
+        <h2 class='bx bx-user-circle icon'> General Information</h2>
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" value="<%= userProfileInfo[0].fullName %>" required>
+
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth"
+            value="<%= userProfileInfo[0].dateOfBirth.toISOString().split('T')[0] %>" required>
+
+        <label for="class">Class:</label>
+        <input type="text" id="class" name="class" value="<%= userProfileInfo[0].class %>" required>
+
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender" value="<%= userProfileInfo[0].gender %>" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" value="<%= userProfileInfo[0].address %>" required>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" value="<%= userProfileInfo[0].email %>" required>
+
+        <label for="image">Image:</label>
+        <input type="text" id="image" name="image" value="<%= userProfileInfo[0].image %>" required>
+
+        <button type="submit">Save Changes</button>
+    </form>
+    <% } else { %>
+    <p>No profile information available.</p>
+    <% } %>
+    </div>
+
 </html>
