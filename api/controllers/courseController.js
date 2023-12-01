@@ -16,19 +16,19 @@ export const getAllCourse = async (req, res) => {
 }
 
 
-export const addNewCourse = async (req, res) => {
+export const addCourse = async (req, res) => {
     try {
-        const { courseID, courseName, credits, practice, theory } = req.body;
-        connection.query('INSERT INTO courses SET ?', { courseID, courseName, credits, practice, theory }, (error, results) => {
+        const {courseID, courseName, credits, practice, theory } = req.body;
+        connection.query('INSERT INTO courses SET ?', {courseID, courseName, credits, practice, theory }, (error, results) => {
             if (error) throw error;
             res.render('course', { data: results });
         }
         );
     } catch (error) {
-        console.error('Error in addNewCourse:', error);
+        
+        console.error('Error in addCourse:', error);
         res.status(500).send('Internal Server Error');
     }
-
 }
 
 export const deleteCourse = async (req, res) => {

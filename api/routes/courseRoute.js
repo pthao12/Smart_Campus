@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getAllCourse, addNewCourse, deleteCourse, updateCourse } from "../controllers/courseController.js";
+import { getAllCourse, addCourse, deleteCourse, updateCourse } from "../controllers/courseController.js";
 
 const courseRoute = Router();
 courseRoute.get("/", getAllCourse);
-courseRoute.post("/addCourse", addNewCourse);
+courseRoute.post("/addCourse", addCourse);
 courseRoute.delete("/deleteCourse/:id", deleteCourse);
 courseRoute.put("/updateCourse/:id", updateCourse);
 
