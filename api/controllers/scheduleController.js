@@ -8,3 +8,5 @@ export const getSchedule = (req, res) => {
         res.render('curriculum', {data});
     });
 };
+
+
