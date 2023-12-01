@@ -10,7 +10,8 @@ export const loginController = async (req, res) => {
                 //trang
                 req.session.userName = userName;
                 
-                res.redirect('/contact');
+                //res.redirect('/contact');
+                res.redirect('/profile');
             } else {
                 res.redirect('/login?error=1');
             }

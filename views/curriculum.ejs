@@ -33,6 +33,7 @@
     </head>
 <body>
     <h1>curriculum</h1>
+    <%- include('./partials/search.ejs')  %>
 
     <table style="width: 100%">
         <tr>
@@ -42,6 +43,7 @@
             <th>textDescription</th>
             <th>orderDate</th>
             <th>priceEach</th>
+            <th>Download</th>
         </tr>
         <% for(let i = 0; i < data.length; i++) {%>
             <tr>
@@ -49,8 +51,9 @@
                 <td> <%= data[i].status %> </td>
                 <td> <%= data[i].content %> </td>
                 <td> <%= data[i].textDescription %> </td>
-                <td> <%= data[i].orderDate %> </td>
+                <td> <%= data[i].orderDate.toLocaleDateString('el-GR') %> </td>
                 <td> <%= data[i].priceEach %> </td>
+                <td> <i class="fa-solid fa-file-arrow-down"></i> </td>
             </tr>
         <% } %>
     </table>

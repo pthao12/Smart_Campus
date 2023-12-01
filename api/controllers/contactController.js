@@ -20,10 +20,7 @@ export const getInstructorContactInfo = async (userName) => {
     });
 
     console.log('Query Result:', result);
-
-    //trang
     return result;
-    //return result.length > 0 ? result[0] : null;
   } catch (error) {
     console.error('Error in getInstructorContactInfo:', error);
     throw error;

@@ -1,10 +1,19 @@
-import { Router } from "express";
-import {About} from "../controllers/aboutController.js";
-import{Dashboard} from "../controllers/dashboardController.js"
-import{Profile} from "../controllers/profileController.js"
+// profileRoute.js
+import { Router } from 'express';
+import { getProfileInfo } from '../controllers/profileController';
+
 const profileRoute = Router();
-profileRoute.get("/about", About);
-profileRoute.get("/dashboard", Dashboard);
-profileRoute.get("/profile", Profile);
+
+profileRoute.get('/profile', async (req, res) => {
+  try {
+    const loggedInUsername = req.session.userName;
+    const userProfileInfo = await getProfileInfo(loggedInUsername);
+    console.log('User Profile Info:', userProfileInfo);
+    res.render('profile', { userProfileInfo });
+  } catch (error) {
+    console.error('Error in profile route:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 export default profileRoute;
