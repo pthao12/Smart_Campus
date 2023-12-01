@@ -1,3 +1,4 @@
+import e from "express";
 import connection from "../connect/connect";
 import Course from "../modules/CourseModule";
 
@@ -21,7 +22,7 @@ export const addCourse = async (req, res) => {
         const {courseID, courseName, credits, practice, theory } = req.body;
         connection.query('INSERT INTO courses SET ?', {courseID, courseName, credits, practice, theory }, (error, results) => {
             if (error) throw error;
-            res.render('course', { data: results });
+            res.redirect('/course');
         }
         );
     } catch (error) {
@@ -36,7 +37,7 @@ export const deleteCourse = async (req, res) => {
         const { id } = req.params;
         connection.query('DELETE FROM courses WHERE courseId = ?', [id], (error, results) => {
             if (error) throw error;
-            res.render('course', { data: results });
+            res.redirect('/course');
         }
         );
     } catch (error) {
@@ -51,7 +52,7 @@ export const updateCourse = async (req, res) => {
         const { courseName, credits, practice, theory } = req.body;
         connection.query('UPDATE courses SET courseName = ?, credits = ?, practice = ?, theory = ? WHERE courseId = ?', [courseName, credits, practice, theory, id], (error, results) => {
             if (error) throw error;
-            res.render('course', { data: results });
+            res.redirect('/course');
         }
         );
     } catch (error) {
