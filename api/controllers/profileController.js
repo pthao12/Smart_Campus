@@ -26,3 +26,23 @@ export const getProfileInfo = async (userName) => {
     throw error;
   }
 };
+export const updateProfileInfo = async (userName, newData) => {
+    try {
+
+      const updateQuery = 'UPDATE profile SET fullName = ?, dateOfBirth = ?, class = ?, gender = ?, address = ?, email = ?, image = ? WHERE studentID = (SELECT studentID FROM user WHERE userName = ?)';
+  
+      await new Promise((resolve, reject) => {
+        connection.query(updateQuery, [newData.fullName, newData.dateOfBirth, newData.class,newData.gender,newData.address,newData.email,newData.image, userName], (error, results) => {
+          if (error) {
+            console.error('Error in update query:', error);
+            reject(error);
+          } else {
+            resolve(results);
+          }
+        });
+      });
+    } catch (error) {
+      console.error('Error in updateProfileInfo:', error);
+      throw error;
+    }
+  };

@@ -30,7 +30,7 @@
             Balance: <%= payment.balance %><br>
             Debt: <%= payment.debt %><br>
             Amount: <%= payment.amount %><br>
-            Payment Date: <%= payment.paymentDate %><br>
+            Payment Date: <%= payment.paymentDate.toLocaleDateString('el-GR') %><br>
         </li>
     <% }); %>
 </ul>

@@ -8,17 +8,29 @@
     <title>User Profile</title>
 </head>
 <body>
-    <h1>User Profile</h1>
+    <h1>Profile</h1>
     <% if (userProfileInfo && userProfileInfo.length > 0) { %>
-        <p>Full Name: <%= userProfileInfo[0].fullName %></p>
-        <p>Date of Birth: <%= userProfileInfo[0].dateOfBirth %></p>
-        <p>Class: <%= userProfileInfo[0].class %></p>
-        <p>Gender: <%= userProfileInfo[0].gender %></p>
-        <p>Address: <%= userProfileInfo[0].address %></p>
-        <p>Email: <%= userProfileInfo[0].email %></p>
-        <p>Image: <%= userProfileInfo[0].image %></p>
+        <form action="/profile/update" method="post">
+          <label for="fullName">Full Name:</label>
+          <input type="text" id="fullName" name="fullName" value="<%= userProfileInfo[0].fullName %>" required>
+      
+          <label for="dateOfBirth">Date of Birth:</label>
+          <input type="date" id="dateOfBirth" name="dateOfBirth" value="<%= userProfileInfo[0].dateOfBirth.toISOString().split('T')[0] %>" required>
+      
+          <label for="class">Class:</label>
+          <input type="text" id="class" name="class" value="<%= userProfileInfo[0].class %>" required>
+          <label for="gender">Gender:</label>
+          <input type="text" id="gender" name="gender" value="<%= userProfileInfo[0].gender %>" required>
+          <label for="address">Address:</label>
+          <input type="text" id="address" name="address" value="<%= userProfileInfo[0].address %>" required>
+          <label for="email">Email:</label>
+          <input type="text" id="email" name="email" value="<%= userProfileInfo[0].email %>" required>
+          <label for="image">Image:</label>
+          <input type="text" id="image" name="image" value="<%= userProfileInfo[0].image %>" required>
+      
+          <button type="submit">Save Changes</button>
+        </form>
       <% } else { %>
         <p>No profile information available.</p>
       <% } %>
-</body>
 </html>
