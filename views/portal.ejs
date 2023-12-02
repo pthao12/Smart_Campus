@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data</title>
+</head>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h2,
+        h3 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Course register</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Course ID</th>
+                <th>Section ID</th>
+                <th>Year</th>
+                <th>Semester</th>
+                <th>Building</th>
+                <th>Room</th>
+                <th>Teacher name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let portal of data) { %>
+                <tr>
+                    <td>
+                        <%= portal.courseID %>
+                    </td>
+                    <td>
+                        <%= portal.sectionID %>
+                    </td>
+                    <td>
+                        <%= portal.year %>
+                    </td>
+                    <td>
+                        <%= portal.semester %>
+                    </td>
+                    <td>
+                        <%= portal.building %>
+                    </td>
+                    <td>
+                        <%= portal.roomNumber %>
+                    </td>
+                    <td>
+                        <%= portal.teacherName %>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
