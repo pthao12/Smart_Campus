@@ -7,13 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>data</title>
 </head>
+
 <head>
     <style>
+        #addCourseModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f4f4f4;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        #updateCourseModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f4f4f4;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
         body {
             font-family: Arial, sans-serif;
         }
 
-         h2, h3 {
+        h2,
+        h3 {
             color: #333;
         }
 
@@ -23,7 +51,8 @@
             margin-top: 20px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -54,66 +83,118 @@
                 <th>Practice</th>
                 <th>Theory</th>
                 <th>Delete</th>
+                <th>Update</th>
             </tr>
         </thead>
         <tbody>
             <% data.forEach(function(course) { %>
-            <tr>
-                <td><%= course.courseID %></td>
-                <td><%= course.courseName %></td>
-                <td><%= course.credits %></td>
-                <td><%= course.practice %></td>
-                <td><%= course.theory %></td>
-                <td>
-                    <!-- get id them call backend, using method overide -->
-                    <form action="/course/deleteCourse/<%= course.courseID %>?_method=DELETE" method="post">
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
-                <!-- update button when click then show alert can rewrite courseName, credits, practice, theory and using method override -->
-                <td>
-                    <form action="/course/updateCourse/<%= course.courseID %>?_method=PUT" method="post">
-                        <label for="courseName">Course Name:</label>
-                        <input type="text" id="courseName" name="courseName" required>
+                <tr>
+                    <td>
+                        <%= course.courseID %>
+                    </td>
+                    <td>
+                        <%= course.courseName %>
+                    </td>
+                    <td>
+                        <%= course.credits %>
+                    </td>
+                    <td>
+                        <%= course.practice %>
+                    </td>
+                    <td>
+                        <%= course.theory %>
+                    </td>
+                    <td>
+                        <!-- get id them call backend, using method overide -->
+                        <form action="/course/deleteCourse/<%= course.courseID %>?_method=DELETE" method="post">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <!-- if click button then show this form -->
+                        <form action="/course/updateCourse/<%= course.courseID %>?_method=PUT" method="post">
+                            <!-- change row to text field -->
+                            <input type="text" name="courseID" id="courseID" value="<%= course.courseID %>" required>
+                            <input type="text" name="courseName" id="courseName" value="<%= course.courseName %>"
+                                required>
+                            <input type="text" name="credits" id="credits" value="<%= course.credits %>" required>
+                            <input type="text" name="practice" id="practice" value="<%= course.practice %>" required>
 
-                        <label for="credits">Credits:</label>
-                        <input type="text" id="credits" name="credits" required>
-
-                        <label for="practice">Practice:</label>
-                        <input type="text" id="practice" name="practice" required>
-
-                        <label for="theory">Theory:</label>
-                        <input type="text" id="theory" name="theory" required>
-
-                        <button type="submit">Update</button>
-                    </form>
-                </td>
-            </tr>
-            <% }); %>
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }); %>
         </tbody>
     </table>
 
-    <h2>Add course</h2>
-    <!-- add course method post -->
-    <form action="/course/addCourse" method="post">
-        <label for="courseID">Course ID:</label>
-        <input type="text" id="courseID" name="courseID" required>
+    <!-- Link to open the Add New Course modal -->
+    <a href="#" onclick="openAddCourseModal()">Add New Course</a>
 
-        <label for="courseName">Course Name:</label>
-        <input type="text" id="courseName" name="courseName" required>
+    <!-- Add New Course Modal -->
+    <div id="addCourseModal">
+        <h2>Add New Course</h2>
+        <form action="/course/addCourse" method="post">
+            <label for="courseID">Course ID</label>
+            <input type="text" name="courseID" id="courseID" required>
+            <label for="courseName">Course Name</label>
+            <input type="text" name="courseName" id="courseName" required>
+            <label for="credits">Credits</label>
+            <input type="text" name="credits" id="credits" required>
+            <label for="practice">Practice</label>
+            <input type="text" name="practice" id="practice" required>
+            <label for="theory">Theory</label>
+            <input type="text" name="theory" id="theory" required>
+            <button type="submit">Add Course</button>
+        </form>
+        <a href="#" onclick="closeAddCourseModal()">Cancel</a>
+    </div>
 
-        <label for="credits">Credits:</label>
-        <input type="text" id="credits" name="credits" required>
+    <script>
+        // Get the modal
+        var addCourseModal = document.getElementById("addCourseModal");
 
-        <label for="practice">Practice:</label>
-        <input type="text" id="practice" name="practice" required>
+        // Get the button that opens the modal
+        var addCourseBtn = document.getElementById("addCourseBtn");
 
-        <label for="theory">Theory:</label>
-        <input type="text" id="theory" name="theory" required>
+        // Get the <span> element that closes the modal
+        var addCourseSpan = document.getElementsByClassName("close")[0];
 
-        <button type="submit">Add Course</button>
-    </form>
+        // When the user clicks the button, open the modal
+        function openAddCourseModal() {
+            addCourseModal.style.display = "block";
+        }
 
+        // When the user clicks on <span> (x), close the modal
+        function closeAddCourseModal() {
+            addCourseModal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == addCourseModal) {
+                addCourseModal.style.display = "none";
+            }
+        }
+    </script>
+
+    <!-- when double click to row then show this form -->
+    <script>
+        var updateCourseModal = document.getElementById("updateCourseModal");
+        var updateCourseBtn = document.getElementById("updateCourseBtn");
+        var updateCourseSpan = document.getElementsByClassName("close")[0];
+        function openUpdateCourseModal() {
+            updateCourseModal.style.display = "block";
+        }
+        function closeUpdateCourseModal() {
+            updateCourseModal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == updateCourseModal) {
+                updateCourseModal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 
 </html>
