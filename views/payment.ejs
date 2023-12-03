@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Payments</title>
@@ -24,7 +25,8 @@
             width: 100%;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
@@ -33,6 +35,7 @@
         th {
             background-color: #f2f2f2;
         }
+
         button {
             width: 150px;
             background-color: #1F4172;
@@ -42,75 +45,91 @@
             border-radius: 4px;
             cursor: pointer;
         }
-        button:hover{
-            background-color:#132043 ;
+
+        button:hover {
+            background-color: #132043;
         }
     </style>
 </head>
+
 <body>
 
-<h1>All Payments</h1>
+    <h1>All Payments</h1>
 
-<!-- Payments Table -->
-<table>
-    <thead>
-        <tr>
-            <th>Number</th>
-            <th>Student ID</th>
-            <th>Balance</th>
-            <th>Debt</th>
-            <th>Amount</th>
-            <th>Payment Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% payments.forEach((payment, index) => { %>
+    <!-- Payments Table -->
+    <table>
+        <thead>
             <tr>
-                <td><%= index + 1 %></td>
-                <td><%= payment.studentID %></td>
-                <td><%= payment.balance %></td>
-                <td><%= payment.debt %></td>
-                <td><%= payment.amount %></td>
-                <td><%= payment.paymentDate.toLocaleDateString('el-GR') %></td>
+                <th>Number</th>
+                <th>Student ID</th>
+                <th>Balance</th>
+                <th>Debt</th>
+                <th>Amount</th>
+                <th>Payment Date</th>
             </tr>
-        <% }); %>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <% payments.forEach((payment, index)=> { %>
+                <tr>
+                    <td>
+                        <%= index + 1 %>
+                    </td>
+                    <td>
+                        <%= payment.studentID %>
+                    </td>
+                    <td>
+                        <%= payment.balance %>
+                    </td>
+                    <td>
+                        <%= payment.debt %>
+                    </td>
+                    <td>
+                        <%= payment.amount %>
+                    </td>
+                    <td>
+                        <%= payment.paymentDate.toLocaleDateString('el-GR') %>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
 
-<!-- Link to open the Add New Payment modal -->
-<a href="#" onclick="openAddPaymentModal()">Add New Payment</a>
+    <!-- Link to open the Add New Payment modal -->
+    <a href="#" onclick="openAddPaymentModal()">Add New Payment</a>
 
-<!-- Add New Payment Modal -->
-<div id="addPaymentModal">
-    <h2>Add New Payment</h2>
-    <img src="https://laptopdell.com.vn/wp-content/uploads/2022/08/ma-Qr-code-la-gi.jpg" alt="Jane" style="width:100%">
+    <!-- Add New Payment Modal -->
+    <div id="addPaymentModal">
+        <h2>Add New Payment</h2>
+        <img src="https://laptopdell.com.vn/wp-content/uploads/2022/08/ma-Qr-code-la-gi.jpg" alt="Jane"
+            style="width:100%">
 
-    <!-- Form for adding a new payment -->
-    <form action="/payment/addPayment" method="POST">
-        <label for="studentID">Student ID:</label>
-        <input type="text" id="studentID" name="studentID" required>
+        <!-- Form for adding a new payment -->
+        <form action="/payment/addPayment" method="POST">
+            <label for="studentID">Student ID:</label>
+            <input type="text" id="studentID" name="studentID" required>
 
-        <label for="amount">Amount:</label>
-        <input type="number" id="amount" name="amount" required>
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
 
-        <button type="submit">Add Payment</button>
-    </form>
+            <button type="submit">Add Payment</button>
+        </form>
 
-    <!-- Close button for the modal -->
-    <button onclick="closeAddPaymentModal()">Close</button>
-</div>
+        <!-- Close button for the modal -->
+        <button onclick="closeAddPaymentModal()">Close</button>
+    </div>
 
-<script>
-    // Function to open the Add New Payment modal
-    function openAddPaymentModal() {
-        document.getElementById('addPaymentModal').style.display = 'block';
-    }
+    <script>
+        // Function to open the Add New Payment modal
+        function openAddPaymentModal() {
+            document.getElementById('addPaymentModal').style.display = 'block';
+        }
 
-    // Function to close the Add New Payment modal
-    function closeAddPaymentModal() {
-        document.getElementById('addPaymentModal').style.display = 'none';
-    }
-</script>
+        // Function to close the Add New Payment modal
+        function closeAddPaymentModal() {
+            document.getElementById('addPaymentModal').style.display = 'none';
+        }
+    </script>
 
 </body>
+
 </html>

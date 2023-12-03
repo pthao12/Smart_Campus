@@ -1,3 +1,4 @@
+import e from "express";
 import connection from "../connect/connect";
 import Course from "../modules/CourseModule";
 
@@ -16,27 +17,27 @@ export const getAllCourse = async (req, res) => {
 }
 
 
-export const addNewCourse = async (req, res) => {
+export const addCourse = async (req, res) => {
     try {
-        const { courseID, courseName, credits, practice, theory } = req.body;
-        connection.query('INSERT INTO courses SET ?', { courseID, courseName, credits, practice, theory }, (error, results) => {
+        const {courseID, courseName, credits, practice, theory } = req.body;
+        connection.query('INSERT INTO courses SET ?', {courseID, courseName, credits, practice, theory }, (error, results) => {
             if (error) throw error;
-            res.render('course', { data: results });
+            res.redirect('/course');
         }
         );
     } catch (error) {
-        console.error('Error in addNewCourse:', error);
+        
+        console.error('Error in addCourse:', error);
         res.status(500).send('Internal Server Error');
     }
-
 }
 
 export const deleteCourse = async (req, res) => {
     try {
         const { id } = req.params;
-        connection.query('DELETE FROM courses WHERE id = ?', [id], (error, results) => {
+        connection.query('DELETE FROM courses WHERE courseId = ?', [id], (error, results) => {
             if (error) throw error;
-            res.render('course', { data: results });
+            res.redirect('/course');
         }
         );
     } catch (error) {
@@ -48,10 +49,10 @@ export const deleteCourse = async (req, res) => {
 export const updateCourse = async (req, res) => {
     try {
         const { id } = req.params;
-        const { courseID, courseName, credits, practice, theory } = req.body;
-        connection.query('UPDATE courses SET courseID = ?, courseName = ?, credits = ?, practice = ?, theory = ? WHERE id = ?', [courseID, courseName, credits, practice, theory, id], (error, results) => {
+        const { courseName, credits, practice, theory } = req.body;
+        connection.query('UPDATE courses SET courseName = ?, credits = ?, practice = ?, theory = ? WHERE courseId = ?', [courseName, credits, practice, theory, id], (error, results) => {
             if (error) throw error;
-            res.render('course', { data: results });
+            res.redirect('/course');
         }
         );
     } catch (error) {
