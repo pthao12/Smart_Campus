@@ -54,6 +54,9 @@
                 <th>Building</th>
                 <th>Room</th>
                 <th>Teacher name</th>
+                <th>Day</th>
+                <th>Start time</th>
+                <th>End time</th>
             </tr>
         </thead>
         <tbody>
@@ -79,6 +82,15 @@
                     </td>
                     <td>
                         <%= portal.teacherName %>
+                    </td>
+                    <td>
+                        <%= portal.day %>
+                    </td>
+                    <td>
+                        <%= portal.startTime %>
+                    </td>
+                    <td>
+                        <%= portal.endTime %>
                     </td>
                 </tr>
                 <% } %>
