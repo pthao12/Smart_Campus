@@ -57,6 +57,7 @@
                 <th>Day</th>
                 <th>Start time</th>
                 <th>End time</th>
+                <th>Regist</th>
             </tr>
         </thead>
         <tbody>
@@ -92,6 +93,14 @@
                     <td>
                         <%= portal.endTime %>
                     </td>
+                    <td>
+                        <form action="/portal/registCourse" method="POST">
+                            <input type="hidden" name="courseID" value="<%= portal.courseID %>">
+                            <input type="hidden" name="sectionID" value="<%= portal.sectionID %>">
+                            <input type="hidden" name="year" value="<%= portal.year %>">
+                            <input type="hidden" name="semester" value="<%= portal.semester %>">
+                            <button type="submit">Register</button>
+                        </form>
                 </tr>
                 <% } %>
         </tbody>

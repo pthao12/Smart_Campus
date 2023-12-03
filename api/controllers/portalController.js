@@ -107,7 +107,7 @@ function getRegistedCourseID(studentID) {
 // Doi lai thanh session
 export const regist = async (req, res) => {
     try {
-        const studentID = req.body.studentID;
+        const studentID = req.session.studentID;
         const courseID = req.body.courseID;
         const sectionID = req.body.sectionID;
         const year = req.body.year;
@@ -115,13 +115,13 @@ export const regist = async (req, res) => {
 
         const duplicate = await checkDuplicate(studentID, courseID);
         if (duplicate) {
-            res.status(400).send('Duplicate');
+            res.send('Duplicate');
             return;
         }
 
         const timeConflict = await checkTimeConflict(studentID, courseID, sectionID, year, semester);
         if (timeConflict) {
-            res.status(400).send('Time Conflict');
+            res.send('Time Conflict');
             return;
         }
 
@@ -150,13 +150,13 @@ export const regist = async (req, res) => {
         }
 
         if (!canRegist) {
-            res.status(400).send('Prereq');
+            res.send('Prereq');
             return;
         }
 
         connection.query('INSERT INTO takes SET ?', { studentID: studentID, courseID: courseID, sectionID: sectionID, year: year, semester: semester }, (error, results) => {
             if (error) throw error;
-            res.status(200).send('OK');
+            res.redirect('/portal');
         });
     } catch (error) {
         console.error('Error in regist:', error);
