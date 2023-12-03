@@ -25,3 +25,19 @@ export const getDocumentById = (req, res) => {
         }
     });
 };
+
+export const searchDocument = async (req, res) => {
+    let searchTerm = req.body.searchTerm;
+    const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9 ]/g, "");
+
+    let sql = "select * from mydb.curriculum where courseID = '" + searchTerm + "'";
+    console.log(sql);
+    db.query(sql, function(err, document){
+        console.log(err, document)
+        if(err || document.length == 0) {
+            throw err;
+        } else {
+            res.json(document);
+        }
+    });
+};
