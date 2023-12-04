@@ -17,6 +17,8 @@ import loginRoute from "./api/routes/loginRoute.js";
 import statisticRoute from "./api/routes/statisticRoute.js";
 import curriculumRoute from "./api/routes/curriculumRoute.js";
 import courseRoute from "./api/routes/courseRoute.js";
+import scheduleRoute from "./api/routes/scheduleRoute.js";
+import portalRoute from "./api/routes/portalRoute.js";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -38,12 +40,12 @@ app.use(methodOverride('_method'));
 
 // Connect DB
 app.use(
-    session({
-      secret: 'your-secret-key',
-      resave: false,
-      saveUninitialized: true,
-    })
-  );
+  session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 // Routes
 app.use("/", dashboardRoute);
@@ -58,10 +60,12 @@ app.use("/payment", paymentRoute);
 
 app.use("/course", courseRoute);
 app.use("/curriculum", curriculumRoute);
- app.use("/statistic", statisticRoute); 
+app.use("/statistic", statisticRoute);
+app.use("/schedule", scheduleRoute);
+app.use("/portal", portalRoute);
 
 app.use(express.static('public'));
 
 app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
+  console.log(`Server is listening on port ${PORT}`);
 });

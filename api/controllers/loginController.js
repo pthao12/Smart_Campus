@@ -9,6 +9,7 @@ export const loginController = async (req, res) => {
             if (results.length > 0) {
                 //trang
                 req.session.userName = userName;
+                req.session.studentID = userName;
                 
                 //res.redirect('/contact');
                 res.redirect('/profile');

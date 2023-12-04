@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { } from "../controllers/scheduleController.js";
+import {getSchedule} from "../controllers/scheduleController.js";
 
-const curriculumRoute = Router();
+const scheduleRouter = Router();
 
-curriculumRoute.get("/", getSchedule);
+scheduleRouter.get("/", getSchedule);
 
-export default curriculumRoute;
+export default scheduleRouter;
