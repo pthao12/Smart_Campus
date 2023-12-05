@@ -32,12 +32,13 @@ export const searchDocument = async (req, res) => {
 
     let sql = "select * from mydb.curriculum where courseID = '" + searchTerm + "'";
     console.log(sql);
-    db.query(sql, function(err, document){
-        console.log(err, document)
-        if(err || document.length == 0) {
+    db.query(sql, function(err, data){
+        console.log(err, data)
+        if(err || data.length == 0) {
             throw err;
         } else {
-            res.json(document);
+            //res.json(document);
+            res.render('curriculum', {data});
         }
     });
 };
