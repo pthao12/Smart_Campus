@@ -48,6 +48,7 @@
         <thead>
             <tr>
                 <th>Course ID</th>
+                <th>Course Name</th>
                 <th>Section ID</th>
                 <th>Year</th>
                 <th>Semester</th>
@@ -65,6 +66,9 @@
                 <tr>
                     <td>
                         <%= portal.courseID %>
+                    </td>
+                    <td>
+                        <%= portal.courseName %>
                     </td>
                     <td>
                         <%= portal.sectionID %>
@@ -88,10 +92,10 @@
                         <%= portal.day %>
                     </td>
                     <td>
-                        <%= portal.startTime %>
+                        <%= portal.timeStart %>
                     </td>
                     <td>
-                        <%= portal.endTime %>
+                        <%= portal.timeEnd %>
                     </td>
                     <td>
                         <form action="/portal/registCourse" method="POST">

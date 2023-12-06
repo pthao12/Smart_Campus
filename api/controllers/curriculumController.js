@@ -3,7 +3,7 @@ import db from '../connect/connect.js';
 
 export const getAllDocuments = (req, res) => {
 
-    let sql = "select * from mydb.curriculum";
+    let sql = "select courseID, courseName, status, updateDate, priceEach from mydb.curriculum join mydb.courses using (courseID)";
     db.query(sql, function(err, data){
         console.log(data);
         if(err) throw err;
