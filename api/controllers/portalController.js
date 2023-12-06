@@ -2,7 +2,7 @@ import connection from "../connect/connect";
 
 export const getAllCourse = async (req, res) => {
     try {
-        connection.query('SELECT * FROM sections', (error, results) => {
+        connection.query('SELECT *, coursename FROM sections JOIN courses USING(courseid)', (error, results) => {
             if (error) throw error;
             res.render('portal', { data: results });
             console.log(results);
@@ -17,7 +17,7 @@ export const getAllCourse = async (req, res) => {
 function getRegistedCourseTime(studentID, year, semester) {
     try {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT day, startTime, endTime FROM takes INNER JOIN sections ON takes.courseID = sections.courseID AND takes.sectionID = sections.sectionID WHERE takes.studentID = ? AND takes.year = ? AND takes.semester = ?', [studentID, year, semester], (error, results) => {
+            connection.query('SELECT day, timeStart, timeEnd FROM takes INNER JOIN sections ON takes.courseID = sections.courseID AND takes.sectionID = sections.sectionID WHERE takes.studentID = ? AND takes.year = ? AND takes.semester = ?', [studentID, year, semester], (error, results) => {
                 if (error) throw error;
                 resolve(results);
             });
@@ -31,7 +31,7 @@ function getRegistedCourseTime(studentID, year, semester) {
 function getCourseTime(courseID, sectionID, semester, year) {
     try {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT day, startTime, endTime FROM sections WHERE courseID = ? AND sectionID = ? AND semester = ? AND year = ?', [courseID, sectionID, semester, year], (error, results) => {
+            connection.query('SELECT day, timeStart, timeEnd FROM sections WHERE courseID = ? AND sectionID = ? AND semester = ? AND year = ?', [courseID, sectionID, semester, year], (error, results) => {
                 if (error) throw error;
                 resolve(results[0]);
             });
@@ -56,7 +56,7 @@ function checkTimeConflict(studentID, courseID, sectionID, year, semester) {
                 const registedCourse = registedCourseTime[i];
                 if (registedCourse.day === courseTime.day) {
                     // (StartA < EndB) && (EndA > StartB)
-                    if (registedCourse.startTime < courseTime.endTime && registedCourse.endTime > courseTime.startTime) {
+                    if (registedCourse.timeStart < courseTime.timeEnd && registedCourse.timeEnd > courseTime.timeStart) {
                         conflict = true;
                         break;
                     }
@@ -150,8 +150,7 @@ export const regist = async (req, res) => {
         }
 
         if (!canRegist) {
-            res.send('Prereq');
-            return;
+            res.redirect('/portal');
         }
 
         connection.query('INSERT INTO takes SET ?', { studentID: studentID, courseID: courseID, sectionID: sectionID, year: year, semester: semester }, (error, results) => {
@@ -160,7 +159,7 @@ export const regist = async (req, res) => {
         });
     } catch (error) {
         console.error('Error in regist:', error);
-        res.status(500).send('Internal Server Error');
+        res.redirect('/portal');
     }
 }
 

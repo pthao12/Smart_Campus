@@ -42,21 +42,21 @@
     <table style="width: 100%">
         <tr>
             <th>Course ID</th>
+            <th>Course Name</th>
             <th>Status</th>
-            <th>Text Description</th>
-            <th>Order Date</th>
-            <th>Price</th>
+            <th>Update Date</th>
+            <th>Fee</th>
             <th>Content</th>
         </tr>
         <% for(let i = 0; i < data.length; i++) {%>
             <tr>
                 <th> <%= data[i].courseID %> </th>
+                <td> <%= data[i].courseName %> </td>
                 <td> <%= data[i].status %> </td>
-                <td> <%= data[i].textDescription %> </td>
-                <td> <%= data[i].orderDate.toLocaleDateString('el-GR') %> </td>
+                <td> <%= data[i].updateDate.toLocaleDateString('el-GR') %> </td>
                 <td> <%= data[i].priceEach %> </td>
                 <td> 
-                    <% if (data[i].status == 'ok') {%> 
+                    <% if (data[i].status == 'Đã cập nhật') {%> 
                         <a href="https://tuananalytic.com/wp-content/uploads/2021/06/very-select-such-insert-so-database-much-sql-1024x768.jpeg.webp">
                             <i class="fa-solid fa-file-arrow-down"></i>
                         </a>
