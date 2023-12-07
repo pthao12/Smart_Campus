@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { Statistic } from "../controllers/statisticController";
+import { getStatistic } from "../controllers/statisticController";
 
 const statisticRoute = Router();
 
-statisticRoute.get("/", Statistic);
+statisticRoute.get("/", getStatistic);
 
 export default statisticRoute;

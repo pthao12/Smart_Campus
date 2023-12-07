@@ -1,16 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statistic</title>
-</head>
-
+<html>
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+    
+             h2, h3 {
+                color: #333;
+            }
+    
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+    
+            th, td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+    
+            th {
+                background-color: #f2f2f2;
+            }
+    
+            tbody tr:hover {
+                background-color: #f5f5f5;
+            }
+            
+            .Download {
+                text-align: center;
+            }
+        </style>
+    </head>
 <body>
-    <div>
-        <h1>Statistic Page</h1>
-        <form action="/statistic" method="get">
-        </form>
-    </div>
+
+    <table style="width: 100%">
+        <tr>
+            <th>Thông tin</th>
+            <th>Thống kê</th>
+        </tr>
+        <tr>
+            <th>
+                Tổng số sinh viên
+            </th>
+            <td>
+                <%= data[0].data %>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Tổng số môn học
+            </th>
+            <td>
+                <%= data[1].data %>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Tổng số lớp học
+            </th>
+            <td>
+                <%= 1032 %>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Tổng số lượt đăng ký học
+            </th>
+            <td>
+                <%= 38520 %>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
